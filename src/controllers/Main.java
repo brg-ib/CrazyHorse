@@ -7,8 +7,8 @@ public class Main {
     public static void main(String[] args) {
         MenuView menu = new MenuView();
         menu.bonjour();
-        while(true) {
+        //while(true) {
             menu.choix();
-        }
+        //}
     }
 }
