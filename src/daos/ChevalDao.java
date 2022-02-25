@@ -16,7 +16,7 @@ public class ChevalDao {
 		
 		public boolean updateCheval(Cheval c, String string) {
 			try{
-				g.setName(string);
+				c.setName(string);
 				return true;
 			}
 			catch(Exception e) {
@@ -25,9 +25,8 @@ public class ChevalDao {
 		}
 		
 		public List<Cheval> getAllChevalFromCourse(Course c){
-			return c.getChevals();
+			return c.getCheval();
 		} 
-	}
-
 
 }
+
