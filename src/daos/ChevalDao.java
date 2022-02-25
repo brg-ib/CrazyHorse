@@ -16,7 +16,7 @@ public class ChevalDao {
 		
 		public boolean updateCheval(Cheval c, String string) {
 			try{
-				g.setName(string);
+				c.setName(string);
 				return true;
 			}
 			catch(Exception e) {
