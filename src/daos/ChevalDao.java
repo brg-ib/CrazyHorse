@@ -24,10 +24,9 @@ public class ChevalDao {
 			}	
 		}
 		
-		/*public List<Cheval> getAllChevalFromCourse(Course c){
-			return c.getChevals();
-		} */
-	}
+		public List<Cheval> getAllChevalFromCourse(Course c){
+			return c.getCheval();
+		} 
 
-
+}
 

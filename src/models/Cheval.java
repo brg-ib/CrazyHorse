@@ -11,6 +11,12 @@ public class Cheval {
         this.age = age;
         this.nbVictoire = nbVictoire;
     }
+
+	public Cheval(String name, int age){
+		this.name = name;
+		this.age = age;
+		this.nbVictoire = nbVictoire;
+	}
     
 	public Cheval(String string) {
 		name = string;
