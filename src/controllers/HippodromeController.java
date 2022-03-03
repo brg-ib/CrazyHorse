@@ -37,6 +37,7 @@ public class HippodromeController {
         }
     }
 
+
     public boolean createCourseAndAddToHippodrome(String hippodromeName,String courseName) {
         Hippodrome hippodrome = hippodromeDao.getHippodromeByName(hippodromeName);
         if(hippodrome == null) {
