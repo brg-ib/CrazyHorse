@@ -32,21 +32,9 @@ public class ChevalDao {
 			}
 		}
 
-
-	public Cheval getFirstCheval(String name) {
-		List<Cheval> chevaux = data.getHippodrome().chevaux;
-		for (int i = 0; i < chevaux.size(); i++) {
-			if (chevaux.get(i).getName().equals(name)) {
-				return chevaux.get(i);
-			}
-		}
-		return null;
-	}
-
 	public List<Cheval> getCheval(){
 			return data.getHippodrome().chevaux;
 	}
-
 
 }
 
