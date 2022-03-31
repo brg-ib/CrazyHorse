@@ -12,7 +12,7 @@ public class MenuView {
     CourseController courseController;
 
     String hippodromeName;
-    String CourseName;
+    String courseName;
 
     public MenuView() {
         hippodromeController = new HippodromeController();
@@ -28,9 +28,9 @@ public class MenuView {
         System.out.println("======================");
         System.out.println("0 Les 10 dernieres courses");
         System.out.println("======================");
-        System.out.println("1 Créer un hippodrome");
+        //System.out.println("1 Créer un hippodrome");
         System.out.println("2 Afficher l'hippodrome");
-        System.out.println("3 Modifier l'hippodrome");
+        //System.out.println("3 Modifier l'hippodrome");
         System.out.println("======================");
         System.out.println("4 Créer une course");
         System.out.println("5 Afficher les courses");
@@ -50,119 +50,56 @@ public class MenuView {
         System.out.print("Votre choix ? ");
 
         switch (Utilitaire.saisieString()) {
-            case "0" :
+            case "0":
                 System.out.println("0 Les 10 dernieres courses");
                 break;
             case "1":
                 System.out.println("1 Créer un hippodrome");
-                if( Data.getHippodromes() != null ) {
-                    System.out.println("Saisissez le nom de l'hippodrome : ");
+                if (Data.getHippodrome() != null) {
+                    System.out.print("Saisissez le nom de l'hippodrome : ");
                     hippodromeName = Utilitaire.saisieString();
-                    hippodromeController.createHippodrome(hippodromeName);
+                    hippodromeController.setHippodromeName(hippodromeName);
                     System.out.println("Opération effectuée !");
-                }
-                else {
+                } else {
                     System.out.println("Un hippodrome existe déjà !");
                 }
                 break;
             case "2":
-                hippodromeController.printHippodrome();
+                System.out.print("Hippodrome: ");
+                hippodromeController.getHippodromeName();
                 break;
             case "3":
                 System.out.println("3 Modifier le nom de l'hippodrome");
-                if(Data.getHippodromes() != null ) {
-                    System.out.println("Saisissez le nouveau nom de l'hippodrome : ");
+                if (Data.getHippodrome() != null) {
+                    System.out.print("Saisissez le nouveau nom de l'hippodrome : ");
                     String newHippodromeName = Utilitaire.saisieString();
                     //hippodromeController.setName(newHippodromeName);
-                }
-                else
+                } else
                     System.out.println("Aucun hippodrome trouvé !");
                 break;
-            case "30":
-                System.out.println("3 Ajouter une scene à un festival");
-                System.out.println("Saisissez un nom de festival : ");
-                hippodromeController.printHippodrome();
-                hippodromeName = Utilitaire.saisieString();
-                System.out.println("Saisissez un nom pour la scène : ");
-                CourseName = Utilitaire.saisieString();
-                if(hippodromeController.createCourseAndAddToHippodrome(hippodromeName, CourseName))
-                    System.out.println("L'ajout a réussi");
-                else
-                    System.out.println("L'ajout a échoué");
-                break;
+
             case "4":
-                System.out.println("4 Enlever une scène d'un festival");
-                System.out.println("Saisissez un nom du festival à selectionner : ");
-                hippodromeController.printHippodrome();
-                hippodromeName = Utilitaire.saisieString();
-                if(!hippodromeController.printAllCourseNameByHippodromeName(hippodromeName)) {
-                    System.out.println("Erreur dans la récupération des scènes, veuillez recommencer le processus.");
-                }else {
-                    System.out.println("Saisissez un nom pour la scène : ");
-                    CourseName = Utilitaire.saisieString();
-                    if(hippodromeController.deleteCourseFromHippodrome(hippodromeName, CourseName))
-                        System.out.println("La suppression a réussi");
-                    else
-                        System.out.println("La suppression a échoué");
+                System.out.println("4 Créer une course");
+                if (Data.getHippodrome() != null) {
+                    System.out.print("Saisissez le nom de la course : ");
+                    courseName = Utilitaire.saisieString();
+                    courseController.createCourse(courseName);
+                    System.out.println("Opération effectuée !");
+                } else {
+                    System.out.println("Cette course existe déjà !");
                 }
                 break;
             case "5":
-                System.out.println("6 Modifier le nom du festival");
-                System.out.println("Saisissez un nom du festival à selectionner : ");
-                hippodromeController.printHippodrome();
-                hippodromeName = Utilitaire.saisieString();
-                System.out.println("Saisissez le nouveau nom du festival : ");
-                String newFestivalName = Utilitaire.saisieString();
-                if(hippodromeController.deleteHippodromeByName(hippodromeName))
-                    System.out.println("La suppression a réussi");
+                System.out.println("2 Afficher les courses");
+                if (Data.getHippodrome().courses != null)
+                    Data.getHippodrome();
                 else
-                    System.out.println("La suppression a échoué");
-                break;
-            case "6":
-                System.out.println("5 Enlever un festival");
-                System.out.println("Saisissez un nom du festival à selectionner : ");
-                hippodromeController.printHippodrome();
-                hippodromeName = Utilitaire.saisieString();
-                if(hippodromeController.deleteHippodromeByName(hippodromeName))
-                    System.out.println("La suppression a réussi");
-                else
-                    System.out.println("La suppression a échoué");
-                break;
-            case "7":
-                System.out.println("7 Ajouter groupe à scene");
-                System.out.println("Saisissez un nom du festival à selectionner : ");
-                hippodromeController.printHippodrome();
-                hippodromeName = Utilitaire.saisieString();
-                //Festival festival = festivalController.getFestivalByName(festivalName);
-                System.out.println("Saisissez un nom de scène : ");
-                hippodromeController.printAllCourseNameByHippodromeName(hippodromeName);
-                CourseName = Utilitaire.saisieString();
-                System.out.println("Saisissez un nom de groupe à ajouter : ");
-                String chevalName = Utilitaire.saisieString();
-                if(courseController.createChevalAndAddToCourse(hippodromeName, CourseName, chevalName))
-                    System.out.println("L'ajout a réussi");
-                else
-                    System.out.println("L'ajout a échoué");
-                break;
-            case "8":
-                System.out.println("8 Sup groupe à scene");
-                System.out.println("Saisissez un nom du festival à selectionner : ");
-                hippodromeController.printHippodrome();
-                hippodromeName = Utilitaire.saisieString();
-                //Festival festival = festivalController.getFestivalByName(festivalName);
-                System.out.println("Saisissez un nom de scène : ");
-                hippodromeController.printAllCourseNameByHippodromeName(hippodromeName);
-                CourseName = Utilitaire.saisieString();
-                System.out.println("Saisissez le nom du groupe à sup : ");
-                chevalName = Utilitaire.saisieString();
-                if(courseController.deleteChevalFromCourse(hippodromeName, CourseName, chevalName))
-                    System.out.println("La sup a réussi");
-                else
-                    System.out.println("La sup a échoué");
+                    System.out.println("Pas de courses !");
                 break;
 
-            default:
-                break;
+
         }
+
     }
+
 }

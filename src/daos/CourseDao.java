@@ -3,45 +3,50 @@ package daos;
 
 import models.Cheval;
 import models.Course;
+import models.Data;
 import models.Hippodrome;
 
 import java.util.List;
 
 public class CourseDao {
 
-    public boolean createChevalToCourse(Cheval cheval, Course course) {
-        if (cheval == null) {
-            return false;
-        }
-        try {
-            course.getCheval().add(cheval);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+
+    public List<Course> getListCourses() {
+        return Data.getHippodrome().courses;
     }
 
-    public boolean deleteChevalFromCourse(Cheval cheval, Course course) {
-        try {
-            return course.getCheval().remove(cheval);
-        } catch (Exception e) {
+    public boolean addChevalToCourse(Course c, List<Cheval> chevaux) {
+        if (chevaux.size() != 6) {
             return false;
         }
+
+        for (Cheval cheval : chevaux) {
+            cheval.getCourses().add(c);
+        }
+        return c.getChevalList().addAll(chevaux);
     }
 
-    public List<Course> getAllCourseFromHippodrome(Hippodrome h) {
-        return h.getCourses();
+    public boolean createCourse(String name) {
+        return Data.getHippodrome().courses.add(new Course(name));
     }
 
-    public Cheval getChevalFromCourseByCourseName(Course c, String courseName) {
-        Cheval cheval = null;
-        if (c == null)
-            return null;
-        for (Cheval g : c.getCheval()) {
-            if (g.getName().equals(courseName)) {
-                cheval = g;
+    public void updateCourseName(Course c, String name) {
+        c.setName(name);
+    }
+
+    public boolean deleteCourse(Course c) {
+        return Data.getHippodrome().courses.remove(c);
+    }
+
+    public Course getFirstCourse(String name) {
+
+        List<Course> courses = Data.getHippodrome().courses;
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).getName().equals(name)) {
+                return courses.get(i);
             }
         }
-        return cheval;
+        return null;
     }
+
 }

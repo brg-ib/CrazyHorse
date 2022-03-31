@@ -5,24 +5,14 @@ import java.util.List;
 
 public class Hippodrome {
 
-    List<Course> courses;
     String name;
-
-    public Hippodrome() {
-        courses = new ArrayList<Course>();
-        name = "";
-    }
+    public List<Cheval> chevaux;
+    public List<Course> courses;
 
     public Hippodrome(String name) {
-        this();
         this.name = name;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
+        this.chevaux = new ArrayList<>();
+        this.courses = new ArrayList<>();
     }
 
     public String getName() {
@@ -31,6 +21,5 @@ public class Hippodrome {
     public void setName(String name) {
         this.name = name;
     }
-
 
 }

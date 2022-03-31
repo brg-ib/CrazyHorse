@@ -1,28 +1,36 @@
 package models;
+import utils.Utilitaire;
 
-public class Cheval {
+import java.util.ArrayList;
+import java.util.List;
 
-    String name;
-    int age;
-    int nbVictoire;
+public class Cheval{
 
-    public Cheval(String name, int age, int nbVictoire){
-        this.name = name;
-        this.age = age;
-        this.nbVictoire = nbVictoire;
-    }
+    static String name;
+    static int age;
+    static int nbVictoire;
+	static int cmp = 0;
+
+	List<Course> courses;
+
+	Utilitaire u;
+
+
+	public Cheval(){
+		this.name = "Horse"+cmp++;
+		this.age = u.getRandomNumberInRange(1,20);
+		this.courses = new ArrayList<Course>();
+		this.nbVictoire = 0;
+	}
 
 	public Cheval(String name, int age){
 		this.name = name;
 		this.age = age;
-		this.nbVictoire = nbVictoire;
-	}
-    
-	public Cheval(String string) {
-		name = string;
+		this.courses = new ArrayList<Course>();
+		this.nbVictoire = 0;
 	}
 
-	public String getName() {
+	public static String getName() {
 		return name;
 	}
 
@@ -30,7 +38,7 @@ public class Cheval {
 		this.name = name;
 	}
 
-	public int getAge() {
+	public static int getAge() {
 		return age;
 	}
 
@@ -44,6 +52,13 @@ public class Cheval {
 
 	public void setNbVictoire(int nbVictoire) {
 		this.nbVictoire = nbVictoire;
+	}
+
+	public List<Course> getCourses() {
+		return courses;
+	}
+	public void setCourse(List<Course> courses) {
+		this.courses = courses;
 	}
 }
 

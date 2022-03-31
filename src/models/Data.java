@@ -1,18 +1,14 @@
 package models;
 
-import java.util.List;
-
 public class Data {
 
+    static Hippodrome hippo;
 
-    static List<Hippodrome> hippodromes;
-
-    public static List<Hippodrome> getHippodromes() {
-        return hippodromes;
+    public static Hippodrome getHippodrome() {
+        return hippo;
     }
 
-    public static void setHippodromes(List<Hippodrome> hippodromes) {
-        Data.hippodromes = hippodromes;
+    public static void setHippodrome(Hippodrome h) {
+        Data.hippo = h;
     }
-
 }
