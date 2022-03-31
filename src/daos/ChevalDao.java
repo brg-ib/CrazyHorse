@@ -6,13 +6,12 @@ import java.util.List;
 import models.Cheval;
 import models.Course;
 import models.Data;
-import org.jetbrains.annotations.NotNull;
 
 public class ChevalDao {
 
 	Data data;
 
-		public static boolean createCheval(String name, @NotNull int age) {
+		public static boolean createCheval(String name, int age) {
 			return Data.getHippodrome().chevaux.add(new Cheval(name, age));
 		}
 		
